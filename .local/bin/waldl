@@ -25,11 +25,13 @@ sxiv_otps=" -tfpo -z 200" # o is needed for selection
 # each page contains 24 results
 max_pages=5
 # sorting : date_added, relevance, random, views, favorites, toplist
-sorting=toplist
+sorting=relevance
 # quality : large original small
 quality=large
 # atleast : least res
 atleast=1920x1080
+# ratios : aspact Ratio
+ratio=16x9
 
 # allow the user to customize the defaults
 [ -e "$HOME/.config/waldlrc" ] && . "$HOME/.config/waldlrc"
@@ -47,7 +49,7 @@ sh_menu () {
 
 [ -n "$*" ] && query="$*" || query=$( sh_menu )
 #[ -z "$query" ] && exit 1
-query=$(printf '%s' "$query" | tr ' ' '+' )
+# query=$(printf '%s' "$query" | tr ' ' '+' )
 
 ######################
 ## start up commands #
@@ -97,7 +99,7 @@ get_results () {
 			json=$(curl -s -G "https://wallhaven.cc/api/v1/search" \
 					-d "q=$1" \
 					-d "page=$page_no" \
-					-d "atleast=$atleast" \
+					-d "ratios=$ratio" \
 					-d "sorting=$sorting"
 				)
 			printf "%s\n" "$json" >> "$datafile"
