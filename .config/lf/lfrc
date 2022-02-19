@@ -1,3 +1,9 @@
+/*   _  __   */
+/*  | |/ _|  */
+/*  | | |_   */
+/*  | |  _|  */
+/*  |_|_|    */
+/*           */
 set shell zsh
 set icons true
 set shellopts '-eu'
