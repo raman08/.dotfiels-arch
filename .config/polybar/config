@@ -1,0 +1,445 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;==========================================================
+
+[colors]
+
+transparent = #99000000 
+;foreground = ${xrdb:foreground}
+;foreground-alt = ${xrdb:color7}
+;background = ${xrdb:background}
+;background-wm = ${xrdb:color8}
+;background-alt = ${xrdb:color0}
+;primary = ${xrdb:color4}
+;secondary = ${xrdb:color2}
+;alert = ${xrdb:color1}
+
+background = ${xrdb:background}
+background-alt = ${xrdb:color0}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color6:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color5:#222}
+alert = ${xrdb:color3:#222}
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true 
+format-padding-right = 1 
+format-margin-right = 1
+format-underline = ${colors.secondary}
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/main]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 30 
+offset-x = 0 
+offset-y = 0 
+
+radius = 0.0
+
+fixed-center = true 
+
+background = ${colors.transparent}
+foreground = ${colors.foreground}
+
+underline-size = 3 
+overline-size = 0 
+;line-color = ${colors.primary}
+
+padding-left = 0 
+padding-right = 2 
+
+module-margin-left = 0 
+module-margin-right = 3 
+;module-background = #000
+
+font-0 = JetBrains Mono:style:Bold:pixelsize=9;1
+font-1 = Symbols Nerd Font:pixelsize:1:scale=3:antialias=true;1
+
+modules-left = dwm 
+modules-center = date 
+modules-right = spotify spotify-prev spotify-play-pause spotify-next  wlan eth backlight volume mic battery powermenu
+
+tray-position = right
+tray-padding = 2 
+tray-background = ${colors.background}
+tray-scale = 1.0
+
+border-bottom-size = 5
+;border-left-size = 15
+;border-right-size = 15
+;border-color = {colors.alert}
+
+override-redirect = false 
+
+cursor-click = pointer
+cursor-scroll = default 
+
+enable-ipc = true
+
+[module/dwm]
+type = internal/dwm
+format = <label-tags> | <label-floating> <label-title>
+
+socket-path = /tmp/dwm.sock
+
+enable-tags-click = true 
+enable-tags-scroll = true 
+tags-scroll-empty = true 
+tags-scroll-reverse = false
+tags-scroll-wrap = true 
+
+enable-layout-click = true 
+enable-layout-scroll = true 
+layout-scroll-wrap = true 
+layout-scroll-reverse = true
+
+secondary-layout-symbol = "><>" 
+
+; label-separator = |
+label-title = %title%
+label-title-padding =  
+label-title-foreground = ${colors.foreground}
+label-title-maxlen = 50
+label-title-default = ""
+
+label-layout = %symbol%
+label-layout-padding =  
+label-layout-foreground = #000
+label-layout-background = ${colors.primary}
+
+label-floating = F
+
+label-focused = %name%
+label-focused-background = ${colors.primary}
+label-focused-underline= ${colors.foreground-alt}
+label-focused-padding = 2
+
+label-unfocused = %name%
+label-unfocused-padding = 2
+label-unfocused-underline= ${colors.alert}
+
+label-visible = %name%
+label-visible-background = ${colors.background-alt}
+label-visible-padding = ${self.label-focused-padding}
+label-visible-underline= ${colors.alert}
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %name% 
+label-empty-background = ${colors.background}
+label-empty-padding = 2
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%a %b %d"
+time = " %I:%M:%S %p"
+
+format-prefix = "  " 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date% %time%
+label-volume-foreground = ${color.foreground}
+
+format-padding = 1 
+
+
+[module/spotify]
+type = custom/script
+tail = true
+format-prefix = " "
+format-prefix-foreground = #1DB954
+format-underline = #1DB954 
+format = <label>
+exec = /home/raman/.local/bin/scroll_spotify_status
+
+[module/spotify-prev]
+type = custom/script
+exec =  [[ "$(get_spotify_status --status)" = "No player is running" ]] && echo "" || echo "玲"
+format = <label>
+click-left = playerctl previous -p spotify
+
+[module/spotify-play-pause]
+type = custom/ipc
+hook-0 = [[ "$(get_spotify_status --status)" = "No player is running" ]] && echo "" || echo ""
+hook-1 = [[ "$(get_spotify_status --status)" = "No player is running" ]] && echo "" || echo ""
+initial = 0 
+click-left = playerctl play-pause -p spotify
+
+[module/spotify-next]
+type = custom/script
+exec = [[ "$(get_spotify_status --status)" = "No player is running" ]] && echo "" || echo "怜"
+format = <label>
+click-left = playerctl next -p spotify
+
+[module/wlan]
+type = internal/network
+interface = wlp7s0
+interval = 1.0
+
+ping-interval = 3
+format-connected = <label-connected>
+format-connected-prefix = "  "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+
+label-connected = "ﰬ %downspeed% ﰵ %upspeed% "
+
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = 睊 
+label-disconnected-foreground = ${colors.foreground-alt}
+
+format-connected-underline = ${colors.secondary} 
+
+[module/eth]
+type = internal/network
+interface = enp6s0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+
+label-connected = "ﰵ %upspeed% ﰬ %downspeed% "
+
+format-disconnected = 
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+format-underline = ${colors.secondary} 
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+
+format = <ramp> <label>
+
+;format-underline = ${colors.secondary} 
+
+label = "%percentage%%"
+use-actual-brightness = true
+enable-scroll = true
+
+ramp-0 =  
+ramp-1 =  
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = ${colors.foreground-alt}
+
+format-prefix-foreground = ${colors.foreground-alt}
+
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+label-muted = 婢 muted
+label-muted-foreground = #666
+
+enable-scroll = true
+
+use-ui-max = false
+
+ramp-volume-0 = 
+ramp-volume-1 = 墳
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.foreground-alt}
+
+;format-volume-underline = ${colors.secondary} 
+
+click-right = pavucontrol
+
+[module/mic]
+type = custom/script
+exec = ~/.local/bin/mic-control
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = " %output%" 
+tail = true
+
+click-left = ~/.local/bin/mic-control --toggle &
+scroll-up = ~/.local/bin/mic-control  --increase &
+scroll-down = ~/.local/bin/mic-control --decrease &
+click-right = pavucontrol
+
+[module/battery]
+type = internal/battery
+
+battery = BAT1
+adapter = ACAD
+
+full-at = 99
+
+time-format = %H:%M
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.secondary} 
+label-charging = "%percentage%% (%time%)"
+
+format-discharging = <ramp-capacity> <label-discharging> 
+format-discharging-underline = ${self.format-charging-underline}
+label-discharging = "%percentage%% (%time%)"
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+label-full = "FULL"
+
+ramp-capacity-0 = 
+ramp-capacity-1 =  
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 =  
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+
+format-underline = ${colors.secondary} 
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false 
+
+format-spacing = 1
+format-underline = #00000000
+
+label-open = 襤 
+label-open-foreground = ${colors.alert} 
+label-open-padding = 0.5 
+
+label-close = ﰸ cancel
+label-close-foreground = ${colors.alert}
+
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = 勒 reboot
+menu-0-0-exec = sudo reboot 
+menu-0-1 =  power off
+menu-0-1-exec = sudo poweroff
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+
+[module/agenda-ipc]
+type = custom/ipc
+
+hook-0 = i3-agenda -c ~/.google_credentials.json --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
+hook-1 = ~/.config/polybar/scripts/i3agenda-onscroll.sh down && i3-agenda -c ~/.google_credentials.json --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
+hook-2 = ~/.config/polybar/scripts/i3agenda-onscroll.sh up && i3-agenda -c ~/.google_credentials.json --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
+
+format = %{F#61afef}%{F-} <output>
+
+; left click to launch Google Calendar
+click-left = firefox https://calendar.google.com/calendar/u/0/r
+; right click force update the cache, if for example you just added a new event
+click-right = rm ~/.config/i3-agenda/i3-agenda-skip.tmp; i3-agenda -c ~/.config/i3-agenda/client_secret.json --update && notify-send "i3-agenda" "Sync completed"
+
+; show the previous event
+scroll-down = polybar-msg hook agenda-ipc 2
+; show the next event
+scroll-up = polybar-msg hook agenda-ipc 3
+
+[module/agenda]
+type = custom/script
+interval = 900
+exec = polybar-msg hook agenda-ipc 1
+label =
+
+;[module/filesystem]
+;type = internal/fs
+;interval = 25
+
+;mount-0 = /
+
+;label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+;label-unmounted = %mountpoint% not mounted
+;label-unmounted-foreground = ${colors.foreground-alt}
+
+;[module/temperature]
+;type = internal/temperature
+;thermal-zone = 0
+;warn-temperature = 60
+
+;format = <ramp> <label>
+;format-underline = #f50a4d
+;format-warn = <ramp> <label-warn>
+;format-warn-underline = ${self.format-underline}
+
+;label = %temperature-c%
+;label-warn = %temperature-c%
+;label-warn-foreground = ${colors.secondary}
+
+;ramp-0 = 
+;ramp-1 = 
+;ramp-2 = 
+;ramp-foreground = ${colors.foreground-alt}
+
+;[module/memory]
+;type = internal/memory
+;interval = 5
+
+;label = %percentage_used%%
+
+;format-prefix = " "
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #4bffdc
+
+;format-underline = ${colors.secondary} 
+
+;[module/cpu]
+;type = internal/cpu
+;interval = 0.5
+;format-prefix = "菉 "
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #f90000
+;label = %percentage:2%%
+
+;format-underline = ${colors.secondary} 
+
+; vim:ft=dosini

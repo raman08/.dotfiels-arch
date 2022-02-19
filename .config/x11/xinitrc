@@ -1,0 +1,12 @@
+nm-applet &
+picom --experimental-backends &
+dunst &
+sxhkd &
+unclutter &
+setbg /home/raman/Pictures/wallpapers &
+xset r rate 300 50 &
+xss-lock -v -n dim-screen.sh -- betterlockscreen -l -- --ignore-empty-password -f --wrong-text="Imposter Among Us" -e &
+clipmenud &
+i3-battery-popup -n -L 20 -t 10s -D &
+
+while type dwm > /dev/null ; do dwm && continue || break ; done  

@@ -1,0 +1,22 @@
+# My Hotkeys
+
+Print
+	maim | tee ~/Pictures/ScreenShots/$(date +%s).jpg | xclip -sel c -t image/jpg; notify-send "ScreenShot Taken Sucessfully"
+
+super + Print 
+	maim --select | tee ~/Pictures/ScreenShots/$(date +%s).jpg | xclip -sel c -t image/jpg; notify-send "ScreenShot Taken Sucessfully"
+
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	pamixer -{i,d,t} 1; kill -44 $(pidof dwmblocks) 
+
+XF86MonBrightness{Up,Down}
+	sudo xbacklight -{inc,dec} 5;
+
+super + Escape
+	sysact
+
+super + shift + Escape
+	betterlockscreen -l -- --ignore-empty-password -f --wrong-text="Imposter Among Us!!!" -e > /dev/null
+
+super + v
+	clipmenu

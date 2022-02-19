@@ -1,0 +1,130 @@
+set shell zsh
+set icons true
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+set hidden true
+set drawbox true
+set preview true
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+
+cmd open ${{
+    test -L $f && f=$(readlink -f $f)
+    case $(file --mime-type $f -b) in
+        text/*|applicaion/json) $EDITOR $fx;;
+    	video/*|image/*|application/pdf) xdg-open "$f" & disown;;
+	*) xdg-open "$f";;
+	
+    esac
+}}
+
+cmd mkdir ${{
+    printf "Directory Name: "
+    read ans
+    mkdir $ans
+}}
+
+cmd setwallpaper %setbg "$f"
+
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+	*) echo "Unsupported Archive Formate"
+    esac
+}}
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd zip %zip -r "$f" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+
+# Trash cli bindings
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    # extract the substring from start of string up to delimiter.
+    # this is the first "element" of the string.
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    # if there's only one element left, set `files` to an empty string.
+    # this causes us to exit this `while` loop.
+    # else, we delete the first "element" of the string from files, and move onto the next.
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd clear_trash %trash-empty
+
+cmd restore_trash ${{
+  trash-restore
+}}
+
+cmd send_telegram ${{
+  set -f
+  telegram-send --file $f
+}}
+
+# Bindings
+# Remove some defaults
+map m
+map o
+map n
+map "'"
+map '"'
+map d
+map c
+map e
+map f
+
+map ee $$EDITOR "$f"
+map u $view "$f"
+
+map az zip
+map at tar
+map ag targz
+map ab targz
+map au extract
+map dd trash
+map tc clear_trash
+map tr restore_trash
+
+map f fzf_jump 
+
+map . set hidden!
+map DD delete
+map p paste
+map x cut
+map y copy
+map <enter> open
+map md mkdir
+map bg setwallpaper
+map r rename
+map H top
+map L bottom
+map R reload
+map C clear
+map U unselect
+
+map ts send_telegram
