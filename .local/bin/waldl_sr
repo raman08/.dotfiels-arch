@@ -25,7 +25,7 @@ sxiv_otps=" -tfpo -z 200" # o is needed for selection
 # each page contains 24 results
 max_pages=5
 # sorting : date_added, relevance, random, views, favorites, toplist
-sorting=toplist
+sorting=relevance
 # quality : large original small
 quality=large
 # atleast : least res
@@ -49,7 +49,7 @@ sh_menu () {
 
 [ -n "$*" ] && query="$*" || query=$( sh_menu )
 #[ -z "$query" ] && exit 1
-# query=$(printf '%s' "$query" | tr ' ' '+' )
+query=$(printf '%s' "$query" | tr ' ' '+' )
 
 ######################
 ## start up commands #
@@ -97,6 +97,7 @@ get_results () {
 	do
 		{
 			json=$(curl -s -G "https://wallhaven.cc/api/v1/search" \
+					-d "q=$1" \
 					-d "page=$page_no" \
 					-d "ratios=$ratio" \
 					-d "sorting=$sorting"
