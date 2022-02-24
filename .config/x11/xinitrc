@@ -1,4 +1,9 @@
 nm-applet &
+
+/* KDE CONNECT SETTINGS */
+/usr/lib/kdeconnectd &
+kdeconnect-indicator &
+
 picom --experimental-backends &
 dunst &
 sxhkd &
