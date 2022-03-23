@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+export address="00:00:AB:CB:1A:81"
+
+bluetoothctl power on
+
+bluetoothctl connect $address
