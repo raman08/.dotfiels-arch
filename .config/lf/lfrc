@@ -103,6 +103,7 @@ map d
 map c
 map e
 map f
+map t
 
 map ee $$EDITOR "$f"
 map u $view "$f"
