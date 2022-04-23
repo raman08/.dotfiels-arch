@@ -4,6 +4,9 @@ nm-applet &
 /usr/lib/kdeconnectd &
 kdeconnect-indicator &
 
+/*Bluetooth Settings */
+blueman-applet &
+
 picom --experimental-backends &
 dunst &
 sxhkd &
