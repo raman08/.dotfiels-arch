@@ -1,4 +1,3 @@
-#include <cstdint>
 #ifdef ONPC
 #define _GLIBCXX_DEBUG
 #endif
@@ -11,8 +10,7 @@ typedef long long ll;
 typedef long double ld;
 
 int32_t main() {
-  // ios:sync_with_stdio(0);
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
   cin.tie(0);
-
-
 }
