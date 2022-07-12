@@ -1,4 +1,5 @@
-nm-applet &
+/* Network Manager  */
+nm-applet --indicator &
 
 /* KDE CONNECT SETTINGS */
 /usr/lib/kdeconnectd &
@@ -7,14 +8,31 @@ kdeconnect-indicator &
 /*Bluetooth Settings */
 blueman-applet &
 
+/* Picom Compositor */
 picom --experimental-backends &
+
+/* Notification Manager */
 dunst &
+
+/* Globle Shortcuts */
 sxhkd &
+
+/* Hide cursor when not using */
 unclutter &
+
+/* Set Random Wallpaper */
 setbg /home/raman/Pictures/wallpapers &
+
+/* Speedy Keys */
 xset r rate 300 50 &
+
+/* Screen Lock after not using it for some time */
 xss-lock -v -n dim-screen.sh -- betterlockscreen -l -- --ignore-empty-password -f --wrong-text="Imposter Among Us" -e &
+
+/* Clipboard Manager */
 clipmenud &
+
+/* Alert for battery when below 20 percent */
 i3-battery-popup -n -L 20 -t 10s -D &
 
 while type dwm > /dev/null ; do dwm && continue || break ; done  

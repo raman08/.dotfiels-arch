@@ -29,6 +29,11 @@ alias \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi"
 
+# easier to read disk
+alias \
+	df="df -h" \
+	free="free -m"
+
 alias \
 	la="ls -a --color=auto --group-directories-first" \
 	ll="ls -alhF --color=auto" \
@@ -39,8 +44,6 @@ alias \
 	reload="exec ${SHELL} -l" \
 
 alias config-home="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME" \
-
-# alias php="php7"
 
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'
