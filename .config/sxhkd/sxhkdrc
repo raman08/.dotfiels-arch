@@ -26,5 +26,5 @@ super + shift + Escape
 super + v
 	clipmenu
 
-super + b
+super + shift +  b
 	brave	
