@@ -2,16 +2,23 @@
 
 dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
 zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
+kittyconf="${XDG_CONFIG_HOME:-$HOME/.config}/kitty/kitty.conf"
 
 source "${XDG_CACHE_HOME:-$HOME/.cache}/wal/colors.sh"
 
-mkdir -p "${dunstconf%/*}" "${zathuraconf%/*}"
+mkdir -p "${dunstconf%/*}" "${zathuraconf%/*}" "${kittyconf%/*}"
+
+echo "HERE"
 
 mv -n "$dunstconf" "$dunstconf.bak"
 mv -n "$zathuraconf" "$zathuraconf.bak"
+mv -n "$kittyconf" "$kittyconf.bak"
+
+echo "HERE 2"
 
 ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/dunstrc" "$dunstconf"
 ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/zathurarc" "$zathuraconf"
+ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/kitty.conf" "$kittyconf"
 
 fix_sequences() {
         e=$'\e'
@@ -27,6 +34,6 @@ fix_sequences() {
 	done
 }
 
-fix_sequences <"${XDG_CACHE_HOME:-$HOME/.cache}/wal/sequences"
+# fix_sequences <"${XDG_CACHE_HOME:-$HOME/.cache}/wal/sequences"
 
-pkill dunst; setsid -f dunst
+killall -9 dunst; setsid -f dunst

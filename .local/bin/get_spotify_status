@@ -45,13 +45,13 @@ else
         echo ""
     else
         update_hooks "$PARENT_BAR_PID" 1
-	SongStatus=$(playerctl --player=$PLAYER metadata --format "$FORMAT")
-	if [ "$SongStatus" = "No players found" ]; then
-		echo ""
-	else
-		echo "  $SongStatus"
+		SongStatus=$(playerctl --player=$PLAYER metadata --format "$FORMAT")
+		if [ "$SongStatus" = "No players found" ]; then
+			echo ""
+		else
+			echo "  $SongStatus"
 
-	fi
+		fi
     fi
 fi
 

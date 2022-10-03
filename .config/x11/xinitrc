@@ -35,4 +35,4 @@ clipmenud &
 /* Alert for battery when below 20 percent */
 i3-battery-popup -n -L 20 -t 10s -D &
 
-while type dwm > /dev/null ; do dwm && continue || break ; done  
+/* while type dwm > /dev/null ; do dwm && continue || break ; done   */

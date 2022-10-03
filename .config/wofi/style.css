@@ -1,0 +1,51 @@
+@import url("~/.cache/wal/colors-custom-gtk3.css");
+
+* {
+	font-family: 'JetBrains Mono';
+	font-size: 12px;
+}
+
+window {
+	border-radius: 15px;
+}
+
+#input {
+	margin: 5px;
+	border-radius: 0px;
+	border: none;
+	border-bottom: 0px solid black;
+	background-color: #1a1826;
+	color: white;
+}
+
+#inner-box {
+	margin: 5px;
+	background-color: #161320;
+}
+
+#outer-box {
+	margin: 5px;
+	padding: 20px;
+	background-color: #161320;
+	border-radius: 15px 15px 15px 15px;
+}
+
+#scroll {
+}
+
+#text {
+	margin: 5px;
+	color: #abe9b3;
+}
+
+/* #entry:nth-child(even){ */
+/*     background-color: #404552; */
+/* } */
+
+#entry:selected {
+	background-color: #1a1826;
+}
+
+#text:selected {
+	text-decoration-color: white;
+}

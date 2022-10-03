@@ -1,0 +1,8 @@
+insensitive=true
+allow_images=true
+width=600
+height=600
+term=kitty
+hide_scroll=true
+yoffset=200
+xoffset=740
