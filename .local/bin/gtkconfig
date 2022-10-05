@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-THEME='Blade'
-ICONS='Zafiro-Red'
+THEME='Arc'
+ICONS='Papirus Horizon'
 FONT='JetBrains Mono 10'
-CURSOR='Qogirr'
+CURSOR='Volantes Cursors'
 
 SCHEMA='gsettings set org.gnome.desktop.interface'
 

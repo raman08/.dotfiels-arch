@@ -25,7 +25,7 @@ rotate() {
 while read file
 do
 	case "$1" in
-		"w") setbg $file;;
+		"w") swwwbg $file;;
 		"y") echo -n "$file" | tr -d '\n' | xclip -selection clipboard &&
 			notify-send "$file copied to clipboard" -i $(readlink -f $file) & ;;
 		"d") trash-put -f $file && 

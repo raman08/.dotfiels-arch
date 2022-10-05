@@ -38,7 +38,7 @@ ratio=16x9
 
 # the menu command used when no query is provided
 sh_menu () {
-	: | dmenu -p "search wallhaven:"
+	wofi -d -W 500 -H 5 --prompt="search wallhaven:"
 	# ROFI: comment the previous line and uncomment the next line for rofi
 	# rofi -dmenu -l 0 -p "search wallpapers"
 }
@@ -48,7 +48,9 @@ sh_menu () {
 ##########################
 
 [ -n "$*" ] && query="$*" || query=$( sh_menu )
-#[ -z "$query" ] && exit 1
+
+[ -z "$query" ] && exit 1
+
 query=$(printf '%s' "$query" | tr ' ' '+' )
 
 ######################
