@@ -31,7 +31,7 @@ cmd mkdir ${{
     mkdir $ans
 }}
 
-cmd setwallpaper %setbg "$f"
+cmd setwallpaper %swwwbg "$f"
 
 cmd extract ${{
     set -f
