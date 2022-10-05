@@ -21,6 +21,7 @@
 	padding = 6 
 	horizontal_padding = 8
 	frame_width = 1
+	layer = overlay
 
 	# Define a color for the separator.
 	# possible values are:
@@ -62,7 +63,7 @@
 	enable_recursive_icon_lookup = false
 	sticky_history = no
 	history_length = 20
-	dmenu = /usr/local/bin/dmenu -p dunst:
+	dmenu = wofi -d -p dunst:
 	browser = /usr/bin/brave
 	# Always run rule-defined scripts, even if the notification is suppressed
 	always_run_script = true
@@ -72,10 +73,11 @@
 	force_xinerama = false
 
 	mouse_left_click = do_action
-        mouse_middle_click = close_all
-        mouse_right_click = close_current
+	mouse_middle_click = close_all
+	mouse_right_click = close_current
 	
 	default_icon = /home/raman/.config/dunst/normal.png 
+
 [urgency_low]
 	background = "{background}"
 	foreground = "{color8}"
@@ -88,6 +90,7 @@
 	foreground = "{color4}"
 	frame_color = "{color11}"
 	timeout = 5
+
 [urgency_critical]
 	background = "{background}"
 	foreground = "{color15}"

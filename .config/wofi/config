@@ -1,8 +1,36 @@
-insensitive=true
-allow_images=true
+## General
+prompt=Apps
+normal_window=true
+layer=top
+term=kitty
+
+##Geometry
 width=600
 height=600
-term=kitty
+location=0
+orientation=vertical
+halign=fill
+line_wrap=off
+dynamic_lines=false
+
+## Images
+allow_images=true
+allow_markup=true
+image_size=30
+
+## Search
+exec_search=false
+hide_search=false
+parse_search=false
+insensitive=true
+
+## Other
 hide_scroll=true
-yoffset=200
-xoffset=740
+no_action=true
+sort_order=default
+gtk_dark=true
+filter_rate=100
+
+## Keys
+key_expand=Tab
+key_exit=Escape

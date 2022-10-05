@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ ! `pidof wofi` ]]; then
+	wofi --show drun --prompt 'Run Program...'
+else
+	pkill wofi
+fi

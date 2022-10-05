@@ -1,4 +1,4 @@
-@import url("~/.cache/wal/colors-custom-gtk3.css");
+@import url("/home/raman/.config/wofi/colors.css");
 
 * {
 	font-family: 'JetBrains Mono';
@@ -7,6 +7,7 @@
 
 window {
 	border-radius: 15px;
+	background: @background;
 }
 
 #input {
@@ -14,28 +15,35 @@ window {
 	border-radius: 0px;
 	border: none;
 	border-bottom: 0px solid black;
-	background-color: #1a1826;
+	background-color: @color0Flat;
 	color: white;
+	padding: 8px 12px;
+	outline: none;
 }
 
 #inner-box {
 	margin: 5px;
-	background-color: #161320;
+	background-color: @background;
 }
 
 #outer-box {
 	margin: 5px;
 	padding: 20px;
-	background-color: #161320;
+	background-color: @background;
 	border-radius: 15px 15px 15px 15px;
 }
 
 #scroll {
+	margin-top: 20px;
 }
 
 #text {
 	margin: 5px;
-	color: #abe9b3;
+	color: @color7Flat;
+}
+
+#img {
+	padding: 10px;
 }
 
 /* #entry:nth-child(even){ */
@@ -43,7 +51,8 @@ window {
 /* } */
 
 #entry:selected {
-	background-color: #1a1826;
+	background-color: @color1Flat;
+	border-radius: 5px;
 }
 
 #text:selected {
