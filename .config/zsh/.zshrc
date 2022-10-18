@@ -93,7 +93,7 @@ bindkey '^e' edit-command-line
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 #source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
-source /usr/share/doc/find-the-command/ftc.zsh noprompt
+# source /usr/share/doc/find-the-command/ftc.zsh noprompt
 
 # Sapceship configuration
 SPACESHIP_PROMPT_ORDER=(

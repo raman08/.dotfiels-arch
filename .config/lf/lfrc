@@ -4,6 +4,7 @@
 /*  | |  _|  */
 /*  |_|_|    */
 /*           */
+
 set shell zsh
 set icons true
 set shellopts '-eu'
@@ -54,6 +55,24 @@ cmd fzf_jump ${{
     cmd="cd"
   fi
   lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    [ -n "$fs" ] || fs="$(ls)"
+    printf '%s\n' "$fs" > "$old"
+    printf '%s\n' "$fs" > "$new"
+    $EDITOR "$new"
+    [ "$(wc -l "$new")" -ne "$(wc -l "$old")" ] && exit
+    paste "$old" "$new" | while IFS=$(printf "\t") read -r src dst; do
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
 }}
 
 cmd zip %zip -r "$f" "$f"
@@ -133,5 +152,6 @@ map L bottom
 map R reload
 map C clear
 map U unselect
+map br bulk-rename
 
 map ts send_telegram
