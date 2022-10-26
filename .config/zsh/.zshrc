@@ -6,7 +6,8 @@
 # (_)___|___/_| |_|_|  \___|
 #                           
 
-neofetch
+# neofetch
+fastfetch
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
@@ -91,8 +92,9 @@ bindkey '^e' edit-command-line
 
 # Sourcing the files
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
-#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+source <(cod init $$ zsh)
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /usr/share/doc/find-the-command/ftc.zsh noprompt
 
 # Sapceship configuration
