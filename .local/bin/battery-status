@@ -1,0 +1,86 @@
+#!/usr/bin/luajit
+
+-- sleep facility
+sleep = function(x)
+    os.execute("sleep " .. x)
+end
+
+-- notifier facility
+notify = function(title, msg, is_urgent)
+    if not msg then msg = "" end
+    if not is_urgent then
+        os.execute("notify-send '" .. title .. "' '" .. msg .. "'")
+    else
+        os.execute("notify-send --urgency=critical '" .. title .. "' '" .. msg .. "'")
+    end
+end
+
+-- battery getter function
+getbat = function()
+    local valuefile  = io.open("/sys/class/power_supply/BAT1/capacity", "r")
+    local statusfile = io.open("/sys/class/power_supply/BAT1/status", "r")
+
+    value, status = valuefile:read() + 0, statusfile:read()
+
+    valuefile:close()
+    statusfile:close()
+
+    return value, status
+end
+
+
+sleep(10)
+-- main loop
+repeat
+    value, status = getbat()
+
+    print(value .. " " .. status)
+
+    if status == "Charging" then
+
+        -- on plug
+        if not charging then
+            charging  = true
+            notified  = false
+            alerted   = false
+            print "on plug"
+            notify("Charger connected.")
+        end
+
+        -- on full
+        if value == 100 and not not_full then
+            not_full = true
+            print "on full"
+            notify("Battery is full", "You can disconnected the charger now.")
+        end
+
+    else -- Discharging
+
+        -- on unplug
+        if charging then
+            charging = false
+            print "on unplug"
+            notify("Charger disconnected.")
+        end
+
+        -- on full disconnected
+        if not_full then
+            print "on full disconnected"
+            not_full = false
+        end
+
+        -- on critical
+        if value <= 10 and not alerted then
+            alerted = true
+            print "on critical"
+            notify("Critical battery level", "Battery level is below 10%. Please connect the computer to the charger immediately.", true)
+        -- on low
+        elseif value <= 20 and not notified then
+            notified = true
+            print "on low"
+            notify("Low battery level", "Battery level is below 20%. Please connect the computer to the charger.")
+        end
+    end
+
+    sleep(10)
+until false
