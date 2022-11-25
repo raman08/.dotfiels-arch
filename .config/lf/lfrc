@@ -106,6 +106,10 @@ cmd restore_trash ${{
   trash-restore
 }}
 
+cmd mrename ${{
+	mnamer -b -r $f
+}}
+
 cmd send_telegram ${{
   set -f
   telegram-send --file $f
@@ -153,5 +157,6 @@ map R reload
 map C clear
 map U unselect
 map br bulk-rename
+map mr mrename
 
 map ts send_telegram
