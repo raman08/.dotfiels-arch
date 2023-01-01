@@ -1,4 +1,4 @@
-@import url("/home/raman/.cache/wal/colors-custom-gtk3.css");
+@import url('/home/raman/.cache/wal/colors-custom-gtk3.css');
 
 * {
 	border: none;
@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-	background:transparent;
+	background: transparent;
 	color: @foregroundTrans;
 	transition-property: background-color;
 	transition-duration: 0.5s;
@@ -61,7 +61,7 @@ window#waybar {
 	font-size: 15px;
 	padding: 0 10px;
 	padding-left: 15px;
-	color: #0F95D3;
+	color: #0f95d3;
 }
 
 #custom-power {
@@ -73,7 +73,7 @@ window#waybar {
 #custom-media {
 	/* color: #1DB954; */
 	margin-left: 15px;
-	border-bottom: 2px solid #1DB954;
+	border-bottom: 2px solid #1db954;
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
 }
@@ -91,14 +91,14 @@ window#waybar {
 	background-color: @color14Flat;
 }
 
-#workspaces button.active, 
+#workspaces button.active,
 #workspaces button.focused {
 	background-color: @color6;
 	/* border-bottom: 3px solid @color1; */
 }
 
 #workspaces button.urgent {
-  background-color: @color10;
+	background-color: @color10;
 }
 
 #window {
@@ -143,28 +143,26 @@ window#waybar {
 
 #battery.charging,
 #battery.plugged {
-  /* background-color: @color12; */
-  /* color: @surface0; */
+	/* background-color: @color12; */
+	/* color: @surface0; */
 }
 
 @keyframes blink {
-  to {
-    background-color: @surface0;
-    color: @color8;
-  }
+	to {
+		background-color: @surface0;
+		color: @color8;
+	}
 }
 
 #battery.critical:not(.charging) {
-  background-color: red;
-  color: @foreground;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+	background-color: red;
+	color: @foreground;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
-
-
 
 #network {
 	color: @color13Flat;
@@ -176,6 +174,6 @@ window#waybar {
 }
 
 #network.disconnected {
-  /* background-color: @color12Flat; */
-  /* color: @foreground; */
+	/* background-color: @color12Flat; */
+	/* color: @foreground; */
 }

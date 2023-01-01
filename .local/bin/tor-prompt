@@ -4,5 +4,5 @@
 
 import stem.interpreter
 
-if __name__ == '__main__':
-  stem.interpreter.main()
+if __name__ == "__main__":
+    stem.interpreter.main()

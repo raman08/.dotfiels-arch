@@ -56,3 +56,4 @@ plug "zap-zsh/completions"
 
 plug "$HOME/.config/shell/aliasrc"
 plug "$HOME/.config/shell/functionrc"
+

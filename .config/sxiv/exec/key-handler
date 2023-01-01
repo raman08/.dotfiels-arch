@@ -17,18 +17,17 @@ rotate() {
 	tr '\n' '\0' | xargs -0 realpath | sort | uniq | while read file; do
 		case "$(file -b -i "$file")" in
 		image/jpeg*) jpegtran -rotate "$degree" -copy all -outfile "$file" "$file" ;;
-		*)           mogrify  -rotate "$degree" "$file" ;;
+		*) mogrify -rotate "$degree" "$file" ;;
 		esac
 	done
 }
 
-while read file
-do
+while read file; do
 	case "$1" in
-		"w") swwwbg $file;;
-		"y") echo -n "$file" | tr -d '\n' | xclip -selection clipboard &&
-			notify-send "$file copied to clipboard" -i $(readlink -f $file) & ;;
-		"d") trash-put -f $file && 
-			notify-send "$file moved to trash!" -i $(readlink -f $file) & ;;
+	"w") swwwbg $file ;;
+	"y") echo -n "$file" | tr -d '\n' | xclip -selection clipboard &&
+		notify-send "$file copied to clipboard" -i $(readlink -f $file) & ;;
+	"d") trash-put -f $file &&
+		notify-send "$file moved to trash!" -i $(readlink -f $file) & ;;
 	esac
 done

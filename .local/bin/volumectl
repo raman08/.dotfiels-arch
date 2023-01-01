@@ -3,7 +3,7 @@
 iDIR="$HOME/.config/dunst/icons"
 
 get_volume() {
-	volume=`amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]'`
+	volume=$(amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]')
 	echo "$volume"
 }
 
@@ -34,7 +34,7 @@ dec_volume() {
 }
 
 toggle_mute() {
-	status=`amixer get Master | tail -n1 | grep -wo 'on'`
+	status=$(amixer get Master | tail -n1 | grep -wo 'on')
 
 	if [[ "$status" == "on" ]]; then
 		amixer set Master toggle && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/volume-mute.png" "Mute"
