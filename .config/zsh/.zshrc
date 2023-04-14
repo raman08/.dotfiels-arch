@@ -32,14 +32,6 @@ setopt APPEND_HISTORY
 # Rehash to find new completions
 zstyle ':completion:*' rehash true
 
-# Search History
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
-
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
@@ -53,7 +45,12 @@ plug "hlissner/zsh-autopair"
 plug "zap-zsh/fzf"
 plug "zap-zsh/vim"
 plug "zap-zsh/completions"
+plug "zsh-users/zsh-history-substring-search"
 
 plug "$HOME/.config/shell/aliasrc"
 plug "$HOME/.config/shell/functionrc"
 
+
+# # Search History
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
