@@ -13,6 +13,7 @@ bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
 dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
 zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
 kittyconf="${XDG_CONFIG_HOME:-$HOME/.config}/kitty/kitty.conf"
+footconf="${XDG_CONFIG_HOME:-$HOME/.config}/foot/foot.ini"
 
 trueloc="$(readlink -f "$1")" &&
 	case "$(file --mime-type -b "$trueloc")" in
@@ -31,6 +32,8 @@ if command -v wal >/dev/null 2>&1; then
 else
 	[ -f "$dunstconf.bak" ] && unlink "$dunstconf" && mv "$dunstconf.bak" "$dunstconf"
 	[ -f "$zathuraconf.bak" ] && unlink "$zathuraconf" && mv "$zathuraconf.bak" "$zathuraconf"
+	[ -f "$kittyconf.bak" ] && unlink "$kittyconf" && mv "$kittyconf.bak" "$kittyconf"
+	[ -f "$footconf.bak" ] && unlink "$footconf" && mv "$footconf.bak" "$footconf"
 fi
 
 swww img "$bgloc"

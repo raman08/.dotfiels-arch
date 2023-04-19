@@ -14,7 +14,6 @@ set hidden true
 set drawbox true
 set preview true
 set previewer ~/.config/lf/preview
-set cleaner ~/.config/lf/cleaner
 
 cmd open ${{
     test -L $f && f=$(readlink -f $f)
