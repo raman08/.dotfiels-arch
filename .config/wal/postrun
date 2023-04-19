@@ -3,22 +3,21 @@
 dunstconf="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
 zathuraconf="${XDG_CONFIG_HOME:-$HOME/.config}/zathura/zathurarc"
 kittyconf="${XDG_CONFIG_HOME:-$HOME/.config}/kitty/kitty.conf"
+footconf="${XDG_CONFIG_HOME:-$HOME/.config}/foot/foot.ini"
 
 source "${XDG_CACHE_HOME:-$HOME/.cache}/wal/colors.sh"
 
-mkdir -p "${dunstconf%/*}" "${zathuraconf%/*}" "${kittyconf%/*}"
-
-echo "HERE"
+mkdir -p "${dunstconf%/*}" "${zathuraconf%/*}" "${kittyconf%/*}" "${footconf%/*}"  
 
 mv -n "$dunstconf" "$dunstconf.bak"
 mv -n "$zathuraconf" "$zathuraconf.bak"
 mv -n "$kittyconf" "$kittyconf.bak"
-
-echo "HERE 2"
+mv -n "$foot" "$foot.bak"
 
 ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/dunstrc" "$dunstconf"
 ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/zathurarc" "$zathuraconf"
 ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/kitty.conf" "$kittyconf"
+ln -sf "${XDG_CACHE_HOME:-$HOME/.cache}/wal/foot.ini" "$footconf"
 
 fix_sequences() {
 	e=$'\e'
