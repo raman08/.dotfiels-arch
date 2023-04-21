@@ -1,0 +1,16 @@
+ignore-empty-password
+daemonize
+screenshots
+indicator
+clock
+indicator-caps-lock
+disable-caps-lock-text
+indicator-radius=100
+indicator-thickness=5
+effect-blur=7x5
+effect-pixelate=3
+effect-vignette=0.5:0.5
+line-color=00000000
+inside-color=00000088
+separator-color=00000000
+fade-in=0.2
