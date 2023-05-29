@@ -1,0 +1,2 @@
+df -h | awk '/^Filesystem/ { printf "%-10s %-15s %-5s %-8s %s\n", $1, $6, "Use%", "Used", "Available" } /^\/dev\/sd/ { printf "%-10s %-15s %-5s %-8s %s\n", $1, $6, $5, $3, $4 }'
+
