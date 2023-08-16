@@ -23,10 +23,14 @@
 	"wlr/workspaces": {
 		"format": "{icon}",
 		"on-click": "activate",
+		"on-scroll-up": "hyprctl dispatch workspace e+1",
+		"on-scroll-down": "hyprctl dispatch workspace e-1"
 	},
 
 	"hyprland/window": {
-		"format": "|  {}"
+		"format": "|  {}",
+		"max-length": 200,
+		"separate-outputs": true
 	},
 
     "tray": {
