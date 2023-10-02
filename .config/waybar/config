@@ -3,7 +3,7 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 30,
 
-    "modules-left": ["custom/logo","wlr/workspaces","hyprland/window"],
+    "modules-left": ["custom/logo","hyprland/workspaces","hyprland/window", "hyprland/submap"],
     "modules-center": ["clock"],
     "modules-right": ["custom/media", "network", "pulseaudio", "backlight", "battery", "tray", "custom/power"],
 
@@ -20,17 +20,25 @@
         "on-click": "wlogout",
     },
 
-	"wlr/workspaces": {
-		"format": "{icon}",
+	"hyprland/workspaces": {
+		"format": "{name}",
+		"active-only": true,
 		"on-click": "activate",
 		"on-scroll-up": "hyprctl dispatch workspace e+1",
-		"on-scroll-down": "hyprctl dispatch workspace e-1"
+		"on-scroll-down": "hyprctl dispatch workspace e-1",
+		"sort-by": "number"
 	},
 
 	"hyprland/window": {
-		"format": "|  {}",
+		"format": "|  {title}",
 		"max-length": 200,
 		"separate-outputs": true
+	},
+
+	"hyprland/submap": {
+		"format": "✌️ {}",
+		"max-length": 8,
+		"tooltip": false
 	},
 
     "tray": {
@@ -53,31 +61,36 @@
     },
 
     "battery": {
+		"interval": 10,
         "states": {
             "warning": 30,
             "critical": 20 
         },
+		"format-time": "{H} hrs {m} mins",
         "format": "{icon} {capacity}% ({time})",
         "format-charging": "<big><span color=\"#4ee218\"></span></big> {capacity}% ({time})",
         "format-plugged": "  {capacity}% ({time})",
-		"format-time": "{H} hrs {M} mins",
         "format-full": "<span color=\"#d8e218\"></span> Full",
         "format-icons": ["", "", "", "", "", "", "", "", "", "", ""],
     },
 
     "network": {
-		"interval":1,
-        "format-wifi": " {bandwidthDownBytes} ﰬ {bandwidthUpBytes} ﰵ",
-        "format-ethernet": " {bandwidthDownBytes} ﰬ {bandwidthUpBytes} ﰵ",
-        "tooltip-format": "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
-        "format-disconnected": " Disconnected",
+		"interval": 1,
+		"format": "{icon} {bandwidthDownBytes} ﰬ {bandwidthUpBytes} ﰵ",
+		"format-icons": {
+			"wifi": "",
+			"ethernet": ""
+		},
+        "tooltip-format": "{icon} Signal Strenght: {signalStrength}% | SSID: {essid} ",
+        "format-disconnected": "{icon} Disconnected",
     },
 
 	"pulseaudio": {
 		"reverse-scrolling": 1,
-		"format": "{icon} {volume}% ",
+		"format": "{icon} {volume}% | {format_source} ",
 		"format-bluetooth": " {volume}%",
 		"format-muted": "婢 muted",
+
 		"format-icons": {
 			"headphone": "",
 			"phone": "",
@@ -85,9 +98,14 @@
 			"car": "",
 			"default": ["", "墳", ""]
 		},
-		"scroll-step": 1,
+
+		"format-source": "{volume}% ",
+        "format-source-muted": "",
+
+		"scroll-step": 1.0,
 		"on-click": "pamixer -t",
-		"on-click-right": "pavucontrol",
+		"on-click-middle": "pavucontrol",
+		"on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
 		"tooltip": false
 	},
 
