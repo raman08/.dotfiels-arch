@@ -1,1 +1,1 @@
-. "/home/raman/.local/share/cargo/env"
+# . "/home/raman/.local/share/cargo/env"

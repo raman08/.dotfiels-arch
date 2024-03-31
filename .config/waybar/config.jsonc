@@ -84,11 +84,10 @@
 		"reverse-scrolling": 1,
 		"format": "{icon} {percent}%",
 		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
+			""	,
+			"",
+			"",
+			""
 		],
 		"on-scroll-up": "brightnessctl set 5%+",
 		"on-scroll-down": "brightnessctl set 5%-"
@@ -101,29 +100,28 @@
 		},
 		"format-time": "{H} hrs {m} mins",
 		"format": "{icon} {capacity}% ({time})",
-		"format-charging": "<big><span color=\"#4ee218\"></span></big> {capacity}% ({time})",
+		"format-charging": "<big><span color=\"#4ee218\">󰂄</span></big> {capacity}% ({time})",
 		"format-plugged": "  {capacity}% ({time})",
 		"format-full": "<span color=\"#d8e218\"></span> Full",
 		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			""
+			"󰂃",
+			"󰁻",
+			"󰁻",
+			"󰁼",
+			"󰁽",
+			"󰁾",
+			"󰁿",
+			"󰂀",
+			"󰂁",
+			"󰂂"
 		]
 	},
 	"network": {
 		"interval": 1,
-		"format": "{icon} {bandwidthDownBytes} ﰬ {bandwidthUpBytes} ﰵ",
+		"format": "{icon} {bandwidthDownBytes}  {bandwidthUpBytes} ",
 		"format-icons": {
 			"wifi": "",
-			"ethernet": ""
+			"ethernet": "󰈀"
 		},
 		"tooltip-format": "{icon} Signal Strenght: {signalStrength}% | SSID: {essid} ",
 		"format-disconnected": "{icon} Disconnected"
@@ -132,7 +130,7 @@
 		"reverse-scrolling": 1,
 		"format": "{icon} {volume}% | {format_source} ",
 		"format-bluetooth": " {volume}%",
-		"format-muted": "婢 muted",
+		"format-muted": "󰖁 muted",
 		"format-icons": {
 			"headphone": "",
 			"phone": "",
@@ -140,7 +138,7 @@
 			"car": "",
 			"default": [
 				"",
-				"墳",
+				"",
 				""
 			]
 		},
@@ -154,7 +152,7 @@
 	},
 	"privacy": {
 		"icon-spacing": 4,
-		"icon-size": 18,
+		"icon-size": 16,
 		"transition-duration": 250,
 		"modules": [
 			{
