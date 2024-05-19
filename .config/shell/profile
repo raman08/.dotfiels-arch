@@ -4,7 +4,6 @@
 
 export DENO_INSTALL="/home/raman/.deno"
 
-# Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$HOME/.local/bin/"
 export PATH="$PATH:$HOME/.local/share/go/bin"
 export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
@@ -12,6 +11,7 @@ export PATH="$PATH:$HOME/.spicetify"
 export PATH="$PATH:$HOME/.local/share/cargo/bin"
 export PATH="$PATH:/home/raman/.spicetify"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="$PATH:/home/raman/.spicetify"
 
 unsetopt PROMPT_SP
 
@@ -46,7 +46,7 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
-export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 export LESSHISTFILE="-"
 
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
@@ -58,8 +58,8 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
 export HISTFILE="$XDG_DATA_HOME/history"
 
-# Other program settings:
 export DICS="/usr/share/stardict/dic/"
+
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 export LESS=-R
@@ -73,7 +73,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
-export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
+export QT_QPA_PLATFORMTHEME="gtk3"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 
 # [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Hyprland >/dev/null 2>&1 && exec launch-wayland

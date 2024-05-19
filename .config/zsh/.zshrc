@@ -14,9 +14,21 @@ autoload -U colors && colors	# Load colors
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
 # History in cache directory:
+HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Search History
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 zle_highlight=('paste:none')
 
@@ -27,7 +39,6 @@ setopt NOMATCH
 # setopt MENU_COMPLETE
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
-setopt APPEND_HISTORY
 
 # Rehash to find new completions
 zstyle ':completion:*' rehash true
@@ -50,7 +61,4 @@ plug "zsh-users/zsh-history-substring-search"
 plug "$HOME/.config/shell/aliasrc"
 plug "$HOME/.config/shell/functionrc"
 
-
-# # Search History
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+export PATH=$PATH:/home/raman/.spicetify
