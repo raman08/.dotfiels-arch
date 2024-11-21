@@ -60,3 +60,5 @@ plug "zsh-users/zsh-history-substring-search"
 
 plug "$HOME/.config/shell/aliasrc"
 plug "$HOME/.config/shell/functionrc"
+
+export PATH=$PATH:/home/raman/.spicetify
