@@ -62,3 +62,5 @@ plug "$HOME/.config/shell/aliasrc"
 plug "$HOME/.config/shell/functionrc"
 
 export PATH=$PATH:/home/raman/.spicetify
+# Turso
+export PATH="$PATH:/home/raman/.turso"
